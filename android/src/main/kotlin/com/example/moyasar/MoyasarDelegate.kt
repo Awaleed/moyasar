@@ -2,16 +2,11 @@ package com.example.moyasar
 
 import android.app.Activity
 import android.content.Intent
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.ComponentActivity
 import com.moyasar.android.sdk.PaymentConfig
 import com.moyasar.android.sdk.PaymentResult
-import com.moyasar.android.sdk.PaymentSheet
-import com.moyasar.android.sdk.ui.PaymentSheetActivity
 import io.flutter.plugin.common.MethodCall
-import io.flutter.plugin.common.PluginRegistry;
 import io.flutter.plugin.common.MethodChannel
+import io.flutter.plugin.common.PluginRegistry
 
 
 class MoyasarDelegate(private val activity: Activity) : PluginRegistry.ActivityResultListener {
@@ -30,7 +25,7 @@ class MoyasarDelegate(private val activity: Activity) : PluginRegistry.ActivityR
         )
 
         val paymentIntent = Intent(activity, PaymentActivity::class.java)
-        paymentIntent.putExtra("config", config);
+        paymentIntent.putExtra("config", config)
         activity.startActivityForResult(paymentIntent, 1)
 
 
@@ -83,6 +78,6 @@ class MoyasarDelegate(private val activity: Activity) : PluginRegistry.ActivityR
                 null
             )
         }
-        return true;
+        return true
     }
 }

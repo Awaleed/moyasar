@@ -2,18 +2,13 @@ package com.example.moyasar
 
 import android.app.Activity
 import androidx.annotation.NonNull
-import com.moyasar.android.sdk.*
-//import com.moyasar.android.sdk.PaymentConfig
-
 import io.flutter.embedding.engine.plugins.FlutterPlugin
+import io.flutter.embedding.engine.plugins.activity.ActivityAware
+import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
 import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import io.flutter.embedding.engine.plugins.activity.ActivityPluginBinding
-import android.R.attr.setupActivity
-import io.flutter.embedding.engine.plugins.FlutterPlugin.FlutterPluginBinding
-import io.flutter.embedding.engine.plugins.activity.ActivityAware
 
 
 /** MoyasarPlugin */
@@ -37,7 +32,7 @@ class MoyasarPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
 
     override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
         if (call.method == "makePayment") {
-            delegate?.start(call, result);
+            delegate?.start(call, result)
         } else {
             result.notImplemented()
         }
@@ -58,7 +53,7 @@ class MoyasarPlugin : FlutterPlugin, MethodCallHandler, ActivityAware {
     }
 
     override fun onReattachedToActivityForConfigChanges(binding: ActivityPluginBinding) {
-        onAttachedToActivity(binding);
+        onAttachedToActivity(binding)
     }
 
 
