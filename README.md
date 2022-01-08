@@ -1,15 +1,76 @@
 # moyasar
 
-A new flutter plugin project.
+A Flutter plugin for [moyasar payment sdk](https://moyasar.com/docs/payments/mobile/).
 
-## Getting Started
+## Moyasar SDK Versions
 
-This project is a starting point for a Flutter
-[plug-in package](https://flutter.dev/developing-packages/),
-a specialized package that includes platform-specific implementation code for
-Android and/or iOS.
+Android: com.moyasar:android-sdk:0.2.2
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+iOS: TODO
 
+### iOS
+
+TODO
+
+### Android
+
+Change the minimum Android sdk version to at the minimum 21 in your `android/app/build.gradle` file.
+
+```
+minSdkVersion 21
+```
+
+activate 'kotlin-kapt' plugin in your `android/app/build.gradle` file.
+
+```
+...
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-kapt'     // -> add this
+...
+```
+
+Disable shrinkResources and enable dataBinding
+
+```
+buildTypes {
+    release {
+        signingConfig signingConfigs.debug
+        shrinkResources false      // -> add this
+        minifyEnabled false        // -> add this
+    }
+}
+
+buildFeatures {         // -> add this
+    dataBinding true    // -> add this
+}                       // -> add this
+
+```
+
+# Example
+
+## Credit Card Payments
+
+The SDK currently only provides Credit Card payments integration. We can use that by first preparing our payment config object as follows:
+
+```
+final config = PaymentConfig(
+    amount: 100,
+    currency: 'SAR',
+    description: 'Sample Flutter SDK Payment',
+    apiKey: 'YOUR_API_KEY',
+);
+```
+
+```
+PaymentResult result = await Moyasar.makePayment(config);
+result.when(
+    success: (PaymentData payment) => print(payment.status),
+    error: (String? message) => print(message),
+    canceled: () {},
+);
+
+```
+
+# reference
+
+https://moyasar.com/docs/payments/mobile/android-sdk
